@@ -9,6 +9,7 @@ Percentage types:
 percentage-1: Example: A value of 1.01 means it will do 1% (1.01-1) of that attribute
 toggle: Add in with a value of 1 to enable
 add: Example: A value of 10 means it will add 10 (ex. At 16: on hit, you would heal up to 10 HP)
+add-1: 'add' except multiplied by -1
 add_percent: Example: 17 (add X% uber on hit). It's 'add', but for things in game that are %'s.
 """
 attributes = {
@@ -71,6 +72,50 @@ attributes = {
     "84": {"num_type": "percentage-1", "desc": "Increased cloak regen rate by {}%"},
     "86": {"num_type": "percentage-1", "desc": "{}% slower spin up time"},
     "87": {"num_type": "1-percentage", "desc": "{}% faster spin up time"},
+    "98": {"num_type": "add-1", "desc": "Take {} damage on hitting someone"},
+    "106": {"num_type": "1-percentage", "desc": "{}% more accurate"},
+    "113": {"num_type": "add", "desc": "Regenerate {} metal every 5 seconds"},
+    "114": {"num_type": "toggle", "desc": "Mini-crit targets launched airbone by explosions, grapple hooks, or rocket packs"},
+    "115": {"num_type": "toggle", "desc": "Deal more melee damage as the user becomes more damaged"},
+    "119": {"num_type": "toggle", "desc": "Only detonate sticky bombs at feet and near crosshair"},
+    "120": {"num_type": "add", "desc": "Sticky bombs arm {} seconds slower"},
+    "124": {"num_type": "toggle", "desc": "The wrench builds mini-sentries"},
+    "125": {"num_type": "add-1", "desc": "{} less max health on wearer"},
+    "126": {"num_type": "add-1", "desc": "Sticky bombs arm {} seconds faster"},
+    "128": {"num_type": "toggle", "desc": "Any attributes added after this one only apply while weapon is active"},
+    "129": {"num_type": "add-1", "desc": "Up to {} health drained per second on wearer"},
+    "136": {"num_type": "toggle", "desc": "On sentry death, gain 2 crits per sentry kill and 1 per sentry assist."},
+    "146": {"num_type": "toggle", "desc": "Damage removes sappers."},
+    "149": {"num_type": "add", "desc": "Bleed for {} seconds on hit"},
+    "150": {"num_type": "toggle", "desc": "Imbued with an ancient power"},
+    "154": {"num_type": "toggle", "desc": "Disguise on backstab"},
+    "155": {"num_type": "toggle", "desc": "Wearer cannot disguise"},
+    "156": {"num_type": "toggle", "desc": "Backstabs are silent"},
+    "158": {"num_type": "add", "desc": "Gain {}% cloak on kill"},
+    "160": {"num_type": "toggle", "desc": "Decloaks are quieter"},
+    "166": {"num_type": "add", "desc": "Gain {}% cloak on hit"},
+    "168": {"num_type": "toggle", "desc": "Immune to fire damage while disguised"},
+    "175": {"num_type": "add", "desc": "Apply jarate from 2 to {} seconds on scoped hit based on charge level"},
+    "179": {"num_type": "toggle", "desc": "This weapon crits when it would normally mini-crit"},
+    "181": {"num_type": "toggle", "desc": "Don't take damage from self inflicted blast damage"},
+    "182": {"num_type": "add", "desc": "Slow enemy by 40% for {} seconds on hit"},
+    "188": {"num_type": "add", "desc": "Keep up to {}% of your uber on death"},
+    "200": {"num_type": "toggle", "desc": "AOE heal taunt on alt-fire"},
+    "203": {"num_type": "toggle", "desc": "Those killed drop a small health pack."},
+    "204": {"num_type": "toggle", "desc": "Hit yourself on miss"},
+    "208": {"num_type": "toggle", "desc": "Target is engulfed in flames on hit"},
+    "209": {"num_type": "toggle", "desc": "Mini-crit vs. burning players"},
+    "217": {"num_type": "toggle", "desc": "Absorb health from victim on backstab"},
+    "218": {"num_type": "toggle", "desc": "Mark target for death on hit. Only one target can be marked."},
+    "220": {"num_type": "add", "desc": "Gain {}% of base health on kill"},
+    "226": {"num_type": "toggle", "desc": "Take 50 damage when sheathing except when it's killed."},
+    "231": {"num_type": "toggle", "desc": "UberCharge acts like quickfix (300% heal rate and stuff)"},
+    "235": {"num_type": "toggle", "desc": "Move speed increases as the user becomes injured"},
+    "238": {"num_type": "toggle", "desc": "Minigun barrel spin is silent"},
+    "250": {"num_type": "toggle", "desc": "Triple jump and crit with melee in air while this item is held."},
+    "251": {"num_type": "toggle", "desc": "Speed boost for self and teammate on teammate hit"},
+    "267": {"num_type": "toggle", "desc": "Deal crits while rocket jumping"},
+    "269": {"num_type": "toggle", "desc": "You can see enemy health"},
 
 }
 
@@ -85,6 +130,8 @@ def ask_for_attributes():
                 print("Invalid attribute!")
                 continue
         except ValueError:
+            if ans == "e":
+                continue
             for a in attributes.keys():
                 if ans in attributes[a]["desc"].lower():
                     print(a + ": " + attributes[a]["desc"].format("x"))
@@ -123,6 +170,8 @@ def get_attrib_value(attrib):
         return str(value_from_user)
     elif selected["num_type"] == "toggle":
         return "1"
+    elif selected["num_type"] == "add-1":
+        return str(value_from_user * -1)
     elif selected["num_type"] == "add_percent":
         return str(value_from_user)
 
