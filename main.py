@@ -39,11 +39,12 @@ attributes = {
     "32": {"num_type": "add_percent", "desc": "{}% chance to slow target on hit"},
     "34": {"num_type": "percentage-1", "desc": "Drain cloak {}% faster"},
     "35": {"num_type": "percentage-1", "desc": "Regenerate cloak {}% faster"},
-    "36": {"num_type": "1-percentage", "desc": "{}% less accurate"},
+    "36": {"num_type": "percentage-1", "desc": "{}% less accurate"},
     "39": {"num_type": "1-percentage", "desc": "Deal {}% less damage to non-stunned players"},
     "41": {"num_type": "percentage-1", "desc": "Snipe rifle charge rate increased by {}%"},
-    "42": {"num_type": "toggle", "desc": "Don't headshot"},
+    "42": {"num_type": "toggle", "desc": "Can't headshot"},
     "44": {"num_type": "toggle", "desc": "Scattergun does knockback"},
+    "45": {"num_type": "percentage-1", "desc": "+{}% bullets per shot"},
     "45": {"num_type": "percentage-1", "desc": "Shoot {}% more bullets"},
     "51": {"num_type": "toggle", "desc": "Revolver crits on headshot"},
     "54": {"num_type": "1-percentage", "desc": "Move {}% slower"},
@@ -64,6 +65,8 @@ attributes = {
     "73": {"num_type": "percentage-1", "desc": "Afterburn from this weapon lasts {}% longer"},
     "74": {"num_type": "1-percentage", "desc": "Afterburn from this weapon lasts {}% shorter"},
     "75": {"num_type": "percentage-1", "desc": "Move {}% faster while deployed"},
+    "76": {"num_type": "percentage-1", "desc": "+{}% max primary ammo"},
+    "77": {"num_type": "1-percentage", "desc": "-{}% max primary ammo"},
     "80": {"num_type": "percentage-1", "desc": "Hold {}% more metal"},
     "81": {"num_type": "1-percentage", "desc": "Hold {}% less metal"},
     "82": {"num_type": "1-percentage", "desc": "{}% less cloak duration"},
@@ -72,7 +75,15 @@ attributes = {
     "84": {"num_type": "percentage-1", "desc": "Increased cloak regen rate by {}%"},
     "86": {"num_type": "percentage-1", "desc": "{}% slower spin up time"},
     "87": {"num_type": "1-percentage", "desc": "{}% faster spin up time"},
+    "90": {"num_type": "percentage-1", "desc": "{}% faster sniper charge rate"},
+    "91": {"num_type": "1-percentage", "desc": "{}% slower sniper charge rate"},
+    "96": {"num_type": "percentage-1", "desc": "{}% slower reload time"},
+    "97": {"num_type": "1-percentage", "desc": "{}% faster reload speed"},
     "98": {"num_type": "add-1", "desc": "Take {} damage on hitting someone"},
+    "99": {"num_type": "percentage-1", "desc": "+{}% explosion radius"},
+    "100": {"num_type": "1-percentage", "desc": "-{}% explosion radius"},
+    "103": {"num_type": "percentage-1", "desc": "+{}% projectile speed"},
+    "104": {"num_type": "1-percentage", "desc": "-{}% projectile speed"},
     "106": {"num_type": "1-percentage", "desc": "{}% more accurate"},
     "113": {"num_type": "add", "desc": "Regenerate {} metal every 5 seconds"},
     "114": {"num_type": "toggle", "desc": "Mini-crit targets launched airbone by explosions, grapple hooks, or rocket packs"},
@@ -86,6 +97,7 @@ attributes = {
     "129": {"num_type": "add-1", "desc": "Up to {} health drained per second on wearer"},
     "136": {"num_type": "toggle", "desc": "On sentry death, gain 2 crits per sentry kill and 1 per sentry assist."},
     "146": {"num_type": "toggle", "desc": "Damage removes sappers."},
+    "148": {"num_type": "1-percentage", "desc": "{}% metal reduction in building cost"},
     "149": {"num_type": "add", "desc": "Bleed for {} seconds on hit"},
     "150": {"num_type": "toggle", "desc": "Imbued with an ancient power"},
     "154": {"num_type": "toggle", "desc": "Disguise on backstab"},
@@ -96,10 +108,13 @@ attributes = {
     "166": {"num_type": "add", "desc": "Gain {}% cloak on hit"},
     "168": {"num_type": "toggle", "desc": "Immune to fire damage while disguised"},
     "175": {"num_type": "add", "desc": "Apply jarate from 2 to {} seconds on scoped hit based on charge level"},
+    "177": {"num_type": "percentage-1", "desc": "{}% longer weapon switch"},
+    "178": {"num_type": "1-percentage", "desc": "{}% faster weapon switch"},
     "179": {"num_type": "toggle", "desc": "This weapon crits when it would normally mini-crit"},
     "181": {"num_type": "toggle", "desc": "Don't take damage from self inflicted blast damage"},
     "182": {"num_type": "add", "desc": "Slow enemy by 40% for {} seconds on hit"},
     "188": {"num_type": "add", "desc": "Keep up to {}% of your uber on death"},
+    "199": {"num_type": "1-percentage", "desc": "{}% faster holster speed"},
     "200": {"num_type": "toggle", "desc": "AOE heal taunt on alt-fire"},
     "203": {"num_type": "toggle", "desc": "Those killed drop a small health pack."},
     "204": {"num_type": "toggle", "desc": "Hit yourself on miss"},
@@ -116,6 +131,7 @@ attributes = {
     "251": {"num_type": "toggle", "desc": "Speed boost for self and teammate on teammate hit"},
     "267": {"num_type": "toggle", "desc": "Deal crits while rocket jumping"},
     "269": {"num_type": "toggle", "desc": "You can see enemy health"},
+    "389": {"num_type": "toggle", "desc": "Shots penetrate players"},
 
 }
 
@@ -154,7 +170,7 @@ def ask_for_attributes():
 
 def get_input(question, answers):
     answer = ""
-    while not answer and answer not in answers:
+    while answer not in answers:
         answer = input(question).lower()
     return answer
 
