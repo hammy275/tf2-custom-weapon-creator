@@ -131,6 +131,7 @@ attributes = {
     "251": {"num_type": "toggle", "desc": "Speed boost for self and teammate on teammate hit"},
     "267": {"num_type": "toggle", "desc": "Deal crits while rocket jumping"},
     "269": {"num_type": "toggle", "desc": "You can see enemy health"},
+    "351": {"num_type": "add", "desc": "Build +{} additional disposable-sentries"},
     "389": {"num_type": "toggle", "desc": "Shots penetrate players"},
 
 }
