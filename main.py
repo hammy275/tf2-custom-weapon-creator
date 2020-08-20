@@ -166,6 +166,9 @@ def ask_for_attributes():
             attribs.append([ans, value])
         else:
             attribs.append([ans, "1"])
+        print("Current weapon stats:")
+        for a in attribs:
+            print(attributes[a[0]]["desc"].format(a[1]))
     return attribs
 
 
@@ -220,9 +223,9 @@ def weapon_creator():
     weapon["class"] = get_input("Enter a class [scout/soldier/pyro/demoman/heavy/engineer/sniper/spy]: ", ["scout", "soldier", "pyro", "demoman", "heavy", "engineer", "medic", "sniper", "spy"])
     slots = ["first", "second", "third"]
     weapon["slot"] = slots.index(get_input("Which slot: " + ", ".join(slots) + "?: ", slots))
-    weapon["baseclass"] = input("Enter the weapon's' baseclass (what the model is, basically): ")
+    weapon["baseclass"] = input("Enter the weapon's' baseclass (basically how the weapon functions): ")
     try:
-        weapon["baseindex"] = str(int(input("Enter the weapon's baseindex used for sounds: ")))
+        weapon["baseindex"] = str(int(input("Enter the weapon's baseindex used for sounds and model: ")))
     except ValueError:
         print("Not a number! Restarting weapon creation...")
         weapon_creator()
