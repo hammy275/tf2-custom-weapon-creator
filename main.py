@@ -140,7 +140,25 @@ def ask_for_attributes():
     ans = ""
     attribs = []
     while ans != "e":
-        ans = input("Type in the attribute's number, a string to search for one, or 'e' to finish selecting attributes: ")
+        ans = input("Type in the attribute's number, a string to search for one, 'd' to delete an attribute, or 'e' to finish selecting attributes: ")
+        if ans == 'd':
+            if len(attribs) == 0:
+                print("No attributes attatched to weapon!")
+                continue
+            c = 0
+            for a in attribs:
+                print("{}: ".format(str(c)) + attributes[a[0]]["desc"].format(a[1]))
+                c += 1
+            opts = ['c']
+            for i in range(0,c+1):
+                opts.append(str(i))
+            to_del = get_input("Type in the number of the attribute you want to delete or 'c' to cancel.", opts)
+            if to_del == 'c':
+                continue
+            else:
+                del attribs[int(to_del)]
+                print("Deleted!")
+                continue
         try:
             ans = str(int(ans))
             if not ans in attributes.keys():
